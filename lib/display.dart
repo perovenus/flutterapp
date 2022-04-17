@@ -14,7 +14,7 @@ class _MongoDbinsertState extends State<MongoDbinsert> {
             return new SingleChildScrollView(
             padding: new EdgeInsets.all(8.0),
             child: new Text(
-                snapshot.toString(),
+                snapshot.data[0]['Name'].toString(),
                 style: new TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 19.0,

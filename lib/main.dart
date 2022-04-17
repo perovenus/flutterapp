@@ -1,22 +1,17 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
-// import mongo file from folder dbhandle
-import 'dbhandle/mongo.dart';
-import 'display.dart';
-void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  MongoDatabase.connect();
-  runApp(MyApp());
-}
+import 'demohome.dart';
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  const MyApp({Key? key}) : super(key: key);
+
+  static const String _title = 'Flutter Code Sample';
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Medicinal Plants',
-      home: MongoDbinsert(),
-      debugShowCheckedModeBanner: false,
+    return const MaterialApp(
+      title: _title,
+      home: Home(),
     );
   }
 }
