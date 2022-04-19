@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Medicinal Plants',
-      home: CategoryListPage(),
+      home: Home(),
       debugShowCheckedModeBanner: false,
     );
   }
