@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'home.dart';
 import 'category.dart';
-// import mongo file from folder dbhandle
 import 'dbhandle/mongo.dart';
 import 'display.dart';
 void main() {
@@ -16,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Medicinal Plants',
-      home: CategoryListPage(),
+      home: MongoDbinsert(),
       debugShowCheckedModeBanner: false,
     );
   }

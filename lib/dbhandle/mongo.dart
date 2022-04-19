@@ -10,9 +10,10 @@ class MongoDatabase{
         print("Connect Successfull!!!");
 
     }
-    static  Future<List<dynamic>> getData(String x) async {
-    //create variable to get object from collection with name  = x
-    final arrData = await userCollection.find({"Name": x}).toList();
-    return arrData;
-}
+    static  Future<List<dynamic>> getDataByName(String x) async {
+        print(x);
+        final arrData = await userCollection.find({"name": x}).toList();
+        print(arrData);
+        return arrData;
+    }
 }
