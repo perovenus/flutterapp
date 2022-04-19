@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dbhandle/mongo.dart';
-class MongoDbinsert extends StatelesWidget {
+class MongoDbinsert extends StatefulWidget {
   @override
   _MongoDbinsertState createState() => _MongoDbinsertState();
 }

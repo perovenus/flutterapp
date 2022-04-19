@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:tflite/tflite.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dbhandle/mongo.dart';
+import 'category.dart';
+
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -200,7 +202,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         //linear color gradient
-        backgroundColor: Color(0xFF000000),
+        backgroundColor: Color(0xFF29D890),
         title: const Text(
           'Nhận diện cây thuốc nam',
           style: TextStyle(
@@ -209,147 +211,7 @@ class _HomeState extends State<Home> {
             letterSpacing: 0.8),
         ),
       ),
-      body: Scrollbar(
-        child: ListView.builder(
-          itemCount: DATA.length,
-          itemBuilder: (context, index) {
-            return InkWell(
-              onTap: () {
-                print('Djtme cuoc doi');
-              },
-              child: Card(
-                child: FractionallySizedBox(
-                  widthFactor: 1.0,
-                  child: Container(
-                    height: 170,
-                    child: Row(
-                      children: <Widget>[
-                        Expanded(
-                          flex: 4,
-                          child: Container(
-                            margin: EdgeInsets.fromLTRB(10, 0, 0, 0), 
-                            child:Image.asset(DATA[index]['source'])),
-                        ),
-                        Expanded(
-                          flex: 6,
-                          child: Container(
-                            margin: const EdgeInsets.fromLTRB(15, 0, 0, 0),
-                            child: Column(
-                              children: <Widget>[
-                                Container(
-                                  margin: const EdgeInsets.fromLTRB(0, 5, 0, 0),
-                                  child: Text(
-                                    DATA[index]['Ten'],
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold
-                                    )
-                                  ),
-                                ),
-                                Container(
-                                  margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                                  child: Row(
-                                    children: <Widget>[
-                                      Expanded(
-                                        flex: 1,
-                                        child: Container(
-                                          child: Column(
-                                            children: <Widget>[
-                                              Align(
-                                                alignment: Alignment.topLeft,
-                                                child: Text(
-                                                  'Tên khoa học',
-                                                  style: TextStyle(
-                                                    color: Color(0xFFA1A8B9),
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w600
-                                                  ),
-                                                )
-                                              ),
-                                              Align(
-                                                alignment: Alignment.topLeft,
-                                                child: Text(
-                                                  DATA[index]['Ten khoa hoc'],
-                                                  overflow: TextOverflow.ellipsis,
-                                                  style: TextStyle(
-                                                    fontSize: 15,
-                                                    fontWeight: FontWeight.w400
-                                                  )
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      Expanded(
-                                        flex: 1,
-                                        child: Container(
-                                          margin: const EdgeInsets.fromLTRB(15, 0, 0, 0),
-                                          child: Column(
-                                            children: <Widget>[
-                                              Align(
-                                                alignment: Alignment.topLeft,
-                                                child: Text('Họ',
-                                                  style: TextStyle(
-                                                    color: Color(0xFFA1A8B9),
-                                                    fontSize: 14,
-                                                    fontWeight: FontWeight.w600
-                                                  ),
-                                                )
-                                              ),
-                                              Align(alignment: Alignment.topLeft,
-                                                child: Text(
-                                                  DATA[index]['Ho'],
-                                                  style: TextStyle(
-                                                    fontSize: 15,
-                                                    fontWeight: FontWeight.w400
-                                                  )
-                                                )
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                Container(
-                                  margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                                  child: Align(alignment: Alignment.topLeft,
-                                    child: Text('Mô tả',
-                                      style: TextStyle(
-                                        color: Color(0xFFA1A8B9),
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w600
-                                      ),
-                                    )
-                                  ),
-                                ),
-                                Align(
-                                  alignment: Alignment.topLeft,
-                                  child: Text(
-                                    DATA[index]['Cong nang'],
-                                    maxLines: 3,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.w400
-                                    )
-                                  ),
-                                )
-                              ],
-                            )
-                          )
-                        )
-                      ],
-                    )
-                  )
-                ),
-              ),
-            );
-          }
-        ),
-      ),
+      body: CategoryListPage(),
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle() ,
         child: Container(
@@ -362,14 +224,14 @@ class _HomeState extends State<Home> {
             children:[
               IconButton(
                 icon: Icon(Icons.folder, size:  40,),
-                onPressed: pickImage,
+                onPressed: () {},
                 //color of icon is 0xD2D2D2
 
                 color: Color.fromRGBO(38, 38, 38, 0.4),
               ),
               IconButton(
                 icon: Icon(Icons.favorite, size:  40,),
-                onPressed: pickGalleryImage,
+                onPressed: () {},
                 color: Color.fromRGBO(38, 38, 38, 0.4),
               ),
             ],
