@@ -19,7 +19,7 @@ class _NavbarState extends State<Navbar> {
     ];
     void OpenPage(int index) {
         setState(() {
-            selectedIndex = index;
+          selectedIndex = index;
         });
     }
 
