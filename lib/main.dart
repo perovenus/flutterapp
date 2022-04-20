@@ -3,6 +3,7 @@ import 'home.dart';
 import 'category.dart';
 import 'dbhandle/mongo.dart';
 import 'display.dart';
+import 'bottombar.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   MongoDatabase.connect();
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Medicinal Plants',
-      home: Home(),
+      home: Navbar(),
       debugShowCheckedModeBanner: false,
     );
   }
