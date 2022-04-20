@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'home.dart';
-import 'category.dart';
 import 'dbhandle/mongo.dart';
-import 'display.dart';
 import 'bottombar.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
