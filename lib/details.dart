@@ -8,6 +8,8 @@ class Details extends StatefulWidget {
 class _DetailsState extends State<Details> {
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    print(width);
     return Scaffold(
       extendBodyBehindAppBar: true,
       backgroundColor: Color(0xFFFBFDFF),
@@ -25,8 +27,8 @@ class _DetailsState extends State<Details> {
                 children: [
                   Image.network(widget.item[0]['image_src']),
                   Positioned(
-                    top: 200,
-                    left: 320,
+                    top: width-30,
+                    left: 310,
                     child: ElevatedButton(
                       onPressed: () {},
                       child: Icon(

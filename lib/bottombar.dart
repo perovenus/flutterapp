@@ -161,7 +161,7 @@ class _NavbarState extends State<Navbar> {
       return Scaffold(
         appBar: AppBar(
           //linear color gradient
-          backgroundColor: const Color(0xFF000000),
+          backgroundColor: const Color(0xFF29D890),
           title: const Text(
             'Nhận diện cây thuốc nam',
             style: TextStyle(
