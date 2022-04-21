@@ -38,8 +38,8 @@ class _DetailsState extends State<Details> {
                       style: ElevatedButton.styleFrom(
                         shape: CircleBorder(),
                         padding: EdgeInsets.all(13),
-                        primary: Color(0xFFFF6262) 
-
+                        primary: Color(0xFFFF6262),
+                        elevation: 15,
                       ),
                     ),
                   )
