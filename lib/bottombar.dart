@@ -76,7 +76,7 @@ class _NavbarState extends State<Navbar> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
                     IconButton(
-                      icon: Icon(Icons.close),
+                      icon: const Icon(Icons.close),
                       onPressed: () {
                         Navigator.pop(context);
                       },
@@ -88,30 +88,30 @@ class _NavbarState extends State<Navbar> {
                   width: 200,
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.blueAccent),
-                    borderRadius: BorderRadius.all(Radius.circular(20.0) //                 <--- border radius here
+                    borderRadius: const BorderRadius.all(Radius.circular(20.0) //                 <--- border radius here
                   ),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.grey.withOpacity(0.5),
                       spreadRadius: 5,
                       blurRadius: 7,
-                      offset: Offset(0, 3), // changes position of shadow
+                      offset: const Offset(0, 3), // changes position of shadow
                     ),
                   ],
                 ),
                   child: ClipRRect(
-                    borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                    borderRadius: const BorderRadius.all(Radius.circular(20.0)),
                     child: Image.file(image, fit: BoxFit.fill),
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(top: 20),
-                  child: Text(res, style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),),
+                  margin: const EdgeInsets.only(top: 20),
+                  child: Text(res, style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold),),
                 ),
                 TextButton(
                     onPressed: () {Navigator.pop(context);
                     },
-                    child: Text('Xem chi tiết'),
+                    child: const Text('Xem chi tiết'),
                   ) 
               ],
             ),
@@ -161,7 +161,7 @@ class _NavbarState extends State<Navbar> {
       return Scaffold(
         appBar: AppBar(
           //linear color gradient
-          backgroundColor: Color(0xFF000000),
+          backgroundColor: const Color(0xFF000000),
           title: const Text(
             'Nhận diện cây thuốc nam',
             style: TextStyle(
@@ -325,7 +325,7 @@ class _NavbarState extends State<Navbar> {
                           child: Container (
                             height: 60,
                             child: Center(
-                              child: const Text(
+                              child: Text(
                                 'Cancel',
                                 style: TextStyle(
                                   fontSize: 20,

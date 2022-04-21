@@ -37,6 +37,7 @@ class _DetailsState extends State<Details> {
                           shape: CircleBorder(),
                           padding: EdgeInsets.all(13),
                           primary: Color(0xFFFF6262) 
+
                         ),
                       ),
                     )
@@ -214,5 +215,5 @@ class _DetailsState extends State<Details> {
           )
         )
       );
-  }
+    }
 }
