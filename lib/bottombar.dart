@@ -18,9 +18,9 @@ class _NavbarState extends State<Navbar> {
       Favorite(),
     ];
     void OpenPage(int index) {
-        setState(() {
-          selectedIndex = index;
-        });
+      setState(() {
+        selectedIndex = index;
+      });
     }
 
     bool _loading = true;
@@ -153,6 +153,9 @@ class _NavbarState extends State<Navbar> {
       }
     }
 
+    bool pressCategory = false;
+    bool pressFavourite = false;
+
     @override
     Widget build(BuildContext context) {
       return Scaffold(
@@ -178,22 +181,73 @@ class _NavbarState extends State<Navbar> {
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children:[
-              IconButton(
-                icon: Icon(Icons.folder, size:  40,),
-                onPressed: (){
+              InkWell(
+                child: Container(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.folder,
+                        size: 40,
+                        color: pressCategory ? Color(0xFF2DDA93) : Color.fromRGBO(38, 38, 38, 0.4),
+                      ),
+                      Text(
+                        'Danh mục',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          color: pressCategory ? Color(0xFF2DDA93) : Color.fromRGBO(38, 38, 38, 0.4),
+                        )
+                      )
+                    ],
+                  )
+                ),
+                onTap: (){
                   OpenPage(0);
+                  if (!pressCategory & !pressFavourite){
+                    setState(() {
+                      pressCategory = !pressCategory;
+                    });
+                  }
+                  else if(!pressCategory & pressFavourite) {
+                    pressCategory = !pressCategory;
+                    pressFavourite = !pressFavourite;
+                  }
                 },
-                //color of icon is 0xD2D2D2
-
-                color: Color.fromRGBO(38, 38, 38, 0.4),
               ),
-              IconButton(
-                icon: Icon(Icons.favorite, size:  40,),
-                onPressed: () {
+              InkWell(
+                child: Container(
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(
+                        Icons.favorite,
+                        size: 40,
+                        color: pressFavourite ? Color(0xFF2DDA93) : Color.fromRGBO(38, 38, 38, 0.4),
+                      ),
+                      Text(
+                        'Yêu thích',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w400,
+                          color: pressFavourite ? Color(0xFF2DDA93) : Color.fromRGBO(38, 38, 38, 0.4),
+                        )
+                      )
+                    ],
+                  )
+                ),
+                onTap: (){
                   OpenPage(2);
+                  if (!pressCategory & !pressFavourite){
+                    setState(() {
+                      pressFavourite = !pressFavourite;
+                    });
+                  }
+                  else if(pressCategory & !pressFavourite) {
+                    pressCategory = !pressCategory;
+                    pressFavourite = !pressFavourite;
+                  }
                 },
-                color: Color.fromRGBO(38, 38, 38, 0.4),
               ),
+              
             ],
           ),
         ),

@@ -9,94 +9,209 @@ class _DetailsState extends State<Details> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-            children: <Widget>[
-                InkWell(
-                   onTap:(){
-                      Navigator.pop(context);
-                    },
-                   child:  Container(
-                    child: Image.network(widget.item[0]['image_src']),
-                )
-               ),
-                Container(
-                    padding: EdgeInsets.only(left: 25, right: 25),
-                    child: SingleChildScrollView(
-                        child: Column(
-                    children: <Widget> [
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>  [
-                                Text(widget.item[0]['name'] , style: TextStyle(fontSize: 20)),
-                                Icon(Icons.favorite, size: 40, color: Colors.red),
-                                ]
+        extendBodyBehindAppBar: true,
+        backgroundColor: Color(0xFFFBFDFF),
+        appBar: AppBar(
+          backgroundColor: Color.fromRGBO(219, 215, 215, 0.0),
+          elevation: 0,
+        ),
+        body: Container(
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Stack(
+                  overflow: Overflow.visible,
+                  children: [
+                    Image.network(widget.item[0]['image_src']),
+                    Positioned(
+                      top: 200,
+                      left: 320,
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        child: Icon(
+                          Icons.favorite,
+                          size: 35
                         ),
-                        Divider(
-                        height: 10,
+                        style: ElevatedButton.styleFrom(
+                          shape: CircleBorder(),
+                          padding: EdgeInsets.all(13),
+                          primary: Color(0xFFFF6262) 
                         ),
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>  [
-                                Text('Tên khoa học' , style: TextStyle(fontSize: 20)),
-                                Text(widget.item[0]['science_name'], style: TextStyle(fontSize: 20))
-                            ]
-                        ),
-                        Divider(
-                        height: 10,
-                        ),
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>  [
-                                Text('Thuộc họ' , style: TextStyle(fontSize: 20)),
-                                Text(widget.item[0]['family'], style: TextStyle(fontSize: 20))
-                            ]
-                        ),
-                        Divider(
-                        height: 10,
-                        ),
-                        Row(
-                            children: <Widget>  [
-                                Text('Mô tả' , style: TextStyle(fontSize: 20)),
-                            ]
-                        ),
-                        Text(widget.item[0]['describe']),
-                        Divider(
-                        height: 10,
-                        ),
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>  [
-                                Text('Bộ phận dùng' , style: TextStyle(fontSize: 20)),
-                                Text('Phần trên mặt đất')
-                            ]
-                        ),
-                        Divider(
-                        height: 10,
-                        ),
-                        Row(
-                            children: <Widget>  [
-                                Text('Công năng, chủ trị' , style: TextStyle(fontSize: 20)),
-                            ]
-                        ),
-                        Text('Thanh nhiệt, giải độc, khu phong trừ thấp, tiêu viêm. Rễ cây chữa gân xương đau nhức, mỏi lưng, mỏi gối, kinh nguyệt không đều, viêm túi mật, vàng da, vàng mắt. Dùng ngoài ngâm rửa trĩ, lòi dom. Lá cây chữa tăng huyết áp, khí hư bạch đới, Lá dùng ngoài trị vết thương, tắm ghẻ, chốc đầu. Hoa dùng trị ngứa'),
-                        Divider(
-                        height: 10,
-                        ),
-                        Row(
-                            children: <Widget>  [
-                                Text('Cách dùng' , style: TextStyle(fontSize: 20)),
-                            ]
-                        ),
-                        Divider(
-                        height: 10,
-                        ),
-                        Text('Rễ ngày dùng 12 - 16g, sắc uống. Dùng 1 kg cành lá, rửa sạch, đun sôi với nước 30 phút, lọc lấy nước, nhỏ giọt liên tục lên vết thương hoặc ngâm vết thương ngày 2 lần, mỗi lần 1 giờ.'),
-
-                    ]
-                )
+                      ),
                     )
+                  ],
+                ),
+                Container(
+                  padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
+                        child: Text(
+                          widget.item[0]['name'],
+                          style: TextStyle(
+                            fontSize: 29,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF36455A)
+                          )
+                        )
+                      ),
+                      Container(
+                        margin: EdgeInsets.fromLTRB(0, 30, 0, 0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              flex: 3,
+                              child: Text(
+                                'Tên khoa học',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xFF495566)
+                                ),
+                              )
+                            ),
+                            Expanded(
+                              flex: 5,
+                              child: Text(
+                                widget.item[0]['science_name'],
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xFF495566)
+                                ),
+                              )
+                            )
+                          ],
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              flex: 3,
+                              child: Text(
+                                'Thuộc họ',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Color(0xFF6A6F7D),
+                                ),
+                              )
+                            ),
+                            Expanded(
+                              flex: 5,
+                              child: Text(
+                                widget.item[0]['family'],
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Color(0xFF6A6F7D),
+                                )
+                              )
+                            )
+                          ],
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                        child: Text(
+                          'Mô tả',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xFF495566)
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                        child: Text(
+                          widget.item[0]['describe'],
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Color(0xFF6A6F7D),
+                          )
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              flex: 3,
+                              child: Text(
+                                'Bộ phận dùng',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: Color(0xFF495566)
+                                ),
+                              )
+                            ),
+                            Expanded(
+                              flex: 5,
+                              child: Text(
+                                widget.item[0]['parts_used'],
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Color(0xFF6A6F7D),
+                                )
+                              )
+                            )
+                          ],
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                        child: Text('Công năng, chủ trị',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xFF495566)
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                        child: Text(
+                          widget.item[0]['functions'],
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Color(0xFF6A6F7D),
+                          )
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.fromLTRB(0, 15, 0, 0),
+                        child: Text('Liều lượng và cách dùng',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Color(0xFF495566)
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
+                        child: Text(
+                          widget.item[0]['usage'],
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Color(0xFF6A6F7D),
+                          )
+                        ),
+                      ),
+                    ],
+                  )
                 )
-            ]
+              ],
+            ),
+          )
         )
       );
   }
