@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'dbhandle/mongo.dart';
 import 'details.dart';
-class MongoDbinsert extends StatefulWidget {
+class ListItem extends StatefulWidget {
   @override
-  _MongoDbinsertState createState() => _MongoDbinsertState();
+  _ListItem createState() => _ListItem();
 }
-class _MongoDbinsertState extends State<MongoDbinsert> {
+class _ListItem extends State<ListItem> {
         @override
     Widget build(BuildContext context) {
         return FutureBuilder(
         future: MongoDatabase.getAllData(),
-        initialData: "Loading text..",
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           List DATA = snapshot.data ?? [];
           return Scaffold(

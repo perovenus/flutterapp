@@ -5,16 +5,14 @@ import 'package:image_picker/image_picker.dart';
 import 'listitem.dart';
 import 'favorite.dart';
 import 'home.dart';
-import 'detailS.dart';
 class Navbar extends StatefulWidget {
   @override
   _NavbarState createState() => _NavbarState();
 }
 class _NavbarState extends State<Navbar> {
-    int selectedIndex = 1;
     final List<Widget> _children = [
-      MongoDbinsert(),
-      Home(),
+      ListItem(),
+      Home(name:-1, percent: 0.00),
       Favorite(),
     ];
     void OpenPage(int index) {
@@ -22,11 +20,13 @@ class _NavbarState extends State<Navbar> {
         selectedIndex = index;
       });
     }
-
+    int selectedIndex = 1;
+    double percent = 0.00;
+    int name = -1;
     bool _loading = true;
     File _image = new File('');
     List _output = [];
-    String res = "";
+
     final picker = ImagePicker(); //allows us to pick image from gallery or camera
   
     @override
@@ -49,75 +49,18 @@ class _NavbarState extends State<Navbar> {
       //this function runs the model on the image
       var output = await Tflite.runModelOnImage(
         path: image.path,
-        numResults: 36, //the amout of categories our neural network can predict
+        numResults: 10, //the amout of categories our neural network can predict
         threshold: 0.5,
         imageMean: 127.5,
         imageStd: 127.5,
       );
-      print("output: $output");
       setState(() {
         _loading = false;
         _output = [output];
-        res = _output[0][0]['confidence'] > 0.8  ?'Đây là: ${_output[0][0]['label']}\nĐộ chính xác: ${(_output[0][0]['confidence']*100).toStringAsFixed(2)}':'Chưa thể kết luận được';
+        name = _output[0][0]['index'];
+        percent = _output[0][0]['confidence'];
+        _children[1] = Home(name: name, percent: percent);
       });
-      showModalBottomSheet<void>(
-        context: context,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(20.0)),
-        ),
-        builder: (BuildContext context) {
-          return Container(
-            height: 800,
-            child:Column(
-              
-              children: <Widget>[
-                //button icon close in left top corner
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    IconButton(
-                      icon: const Icon(Icons.close),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ],
-                ),
-                Container(
-                  height: 200,
-                  width: 200,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.blueAccent),
-                    borderRadius: const BorderRadius.all(Radius.circular(20.0) //                 <--- border radius here
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey.withOpacity(0.5),
-                      spreadRadius: 5,
-                      blurRadius: 7,
-                      offset: const Offset(0, 3), // changes position of shadow
-                    ),
-                  ],
-                ),
-                  child: ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(20.0)),
-                    child: Image.file(image, fit: BoxFit.fill),
-                  ),
-                ),
-                Container(
-                  margin: const EdgeInsets.only(top: 20),
-                  child: Text(res, style: const TextStyle(fontSize: 10, fontWeight: FontWeight.bold),),
-                ),
-                TextButton(
-                    onPressed: () {Navigator.pop(context);
-                    },
-                    child: const Text('Xem chi tiết'),
-                  ) 
-              ],
-            ),
-          );
-        },
-      );
     }
 
     loadModel() async {
@@ -142,10 +85,9 @@ class _NavbarState extends State<Navbar> {
       //this function to grab the image from gallery
       var image = await picker.getImage(source: ImageSource.gallery);
       if (image == null){
-        print('null');
         return null;
       }else{
-        print('not null');
+
         setState(() {
           _image = File(image.path);
         });
@@ -155,6 +97,7 @@ class _NavbarState extends State<Navbar> {
 
     bool pressCategory = false;
     bool pressFavourite = false;
+    bool firstpress = true;
 
     @override
     Widget build(BuildContext context) {
@@ -202,6 +145,9 @@ class _NavbarState extends State<Navbar> {
                   )
                 ),
                 onTap: (){
+                  setState((){
+                    firstpress = true;
+                  });
                   OpenPage(0);
                   if (!pressCategory & !pressFavourite){
                     setState(() {
@@ -235,6 +181,9 @@ class _NavbarState extends State<Navbar> {
                   )
                 ),
                 onTap: (){
+                  setState(() {
+                    firstpress = true;
+                  });
                   OpenPage(2);
                   if (!pressCategory & !pressFavourite){
                     setState(() {
@@ -254,7 +203,14 @@ class _NavbarState extends State<Navbar> {
       ),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
-            OpenPage(1);
+            if (firstpress){
+              setState(() {
+                firstpress = false;
+                pressCategory = false;
+                pressFavourite = false;
+              });
+              OpenPage(1);
+            }else{
             showModalBottomSheet<void>(
               context: context,
               shape: const RoundedRectangleBorder(
@@ -296,8 +252,8 @@ class _NavbarState extends State<Navbar> {
                         onTap: () {
                           //pickGalleryImage and show image in modal bottom sheet
                           pickGalleryImage();
-                          //show image in modal bottom sheet
                           Navigator.pop(context);
+                          //show image in modal bottom sheet
                         },
                         child: FractionallySizedBox(
                           widthFactor: 1.0,
@@ -344,6 +300,9 @@ class _NavbarState extends State<Navbar> {
                 );
               }
             );
+            }
+
+
           },
           child: const Icon(
             Icons.camera_alt

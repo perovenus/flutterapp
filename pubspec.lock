@@ -146,6 +146,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_image_compress:
+    dependency: "direct main"
+    description:
+      name: flutter_image_compress
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -345,6 +352,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.11.1"
+  percent_indicator:
+    dependency: "direct main"
+    description:
+      name: percent_indicator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.0"
   platform:
     dependency: transitive
     description:
@@ -469,6 +483,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.1.2"
+  tiengviet:
+    dependency: "direct main"
+    description:
+      name: tiengviet
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.5.0"
   typed_data:
     dependency: transitive
     description:

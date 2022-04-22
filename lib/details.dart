@@ -160,7 +160,11 @@ class _DetailsState extends State<Details> {
                   Image.network(widget.item[0]['image_src']),
                   Positioned(
                     top: width-30,
+<<<<<<< Updated upstream
                     left: width-80,
+=======
+                    left: width - 80,
+>>>>>>> Stashed changes
                     child: ElevatedButton(
                       onPressed: () {},
                       child: Icon(
