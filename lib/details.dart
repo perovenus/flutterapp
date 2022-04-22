@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:tflite/tflite.dart';
 import 'package:image_picker/image_picker.dart';
+import 'upload.dart';
 class Details extends StatefulWidget {
   final item;
   Details({this.item});
@@ -160,11 +161,7 @@ class _DetailsState extends State<Details> {
                   Image.network(widget.item[0]['image_src']),
                   Positioned(
                     top: width-30,
-<<<<<<< Updated upstream
-                    left: width-80,
-=======
                     left: width - 80,
->>>>>>> Stashed changes
                     child: ElevatedButton(
                       onPressed: () {},
                       child: Icon(
@@ -209,95 +206,7 @@ class _DetailsState extends State<Details> {
                             margin: EdgeInsets.fromLTRB(0, 50, 0, 15),
                             child: ElevatedButton(
                               onPressed: () {
-                                showModalBottomSheet<void>(
-                                  context: context,
-                                  shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.vertical(
-                                      top: Radius.circular(10.0),
-                                      bottom: Radius.circular(10.0)
-                                    ),
-                                  ),
-                                  builder: (BuildContext context) {
-                                    return Container(
-                                      height: 180,
-                                      child: Column(
-                                        children: <Widget>[
-                                          InkWell(
-                                            onTap: () {
-                                              pickImage();
-                                              Navigator.pop(context);
-                                            },
-                                            child: FractionallySizedBox(
-                                              widthFactor: 1.0,
-                                              child: Container (
-                                                height: 60,
-                                                child: Center(
-                                                  child: const Text(
-                                                    'Chụp ảnh',
-                                                    style: TextStyle(
-                                                      fontSize: 20,
-                                                      color: Color(0xFF007AFF)
-                                                    )
-                                                  )
-                                                )
-                                              ),
-                                            )
-                                          ),
-                                          Divider(
-                                            height: 0,
-                                          ),
-                                          InkWell(
-                                            onTap: () {
-                                              //pickGalleryImage and show image in modal bottom sheet
-                                              pickGalleryImage();
-                                              //show image in modal bottom sheet
-                                              Navigator.pop(context);
-                                            },
-                                            child: FractionallySizedBox(
-                                              widthFactor: 1.0,
-                                              child: Container (
-                                                height: 60,
-                                                child: Center(
-                                                  child: const Text(
-                                                    'Ảnh từ thư viện',
-                                                    style: TextStyle(
-                                                      fontSize: 20,
-                                                      color: Color(0xFF007AFF)
-                                                    )
-                                                  )
-                                                )
-                                              ),
-                                            )
-                                          ),
-                                          Divider(
-                                            height: 0,
-                                          ),
-                                          InkWell(
-                                            onTap: () {Navigator.pop(context);},
-                                            child: FractionallySizedBox(
-                                              widthFactor: 1.0,
-                                              child: Container (
-                                                height: 60,
-                                                child: Center(
-                                                  child: Text(
-                                                    'Cancel',
-                                                    style: TextStyle(
-                                                      fontSize: 20,
-                                                      fontWeight: FontWeight.bold,
-                                                      color: Color(0xFFEF5757)
-                                                    ),
-                                                  )
-                                                )
-                                              ),
-                                            )
-                                          )
-                                        ],
-                                      )
-                                      
-                                      // child: Container()
-                                    );
-                                  }
-                                );
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => Upload(name: widget.item[0]['name'])));
                               },
                               child: Container(
                                 width: 80,
