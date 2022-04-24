@@ -4,6 +4,7 @@ import 'bottombar.dart';
 import 'dart:convert';
 import 'dart:typed_data';
 import 'dart:io';
+import 'searchbar.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   MongoDatabase.connect();

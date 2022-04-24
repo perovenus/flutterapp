@@ -102,17 +102,7 @@ class _NavbarState extends State<Navbar> {
     @override
     Widget build(BuildContext context) {
       return Scaffold(
-        appBar: AppBar(
-          //linear color gradient
-          backgroundColor: const Color(0xFF29D890),
-          title: const Text(
-            'Nhận diện cây thuốc nam',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
-              letterSpacing: 0.8),
-          ),
-        ),
+        
         body: _children[selectedIndex], 
         bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle() ,
@@ -171,7 +161,7 @@ class _NavbarState extends State<Navbar> {
                         color: pressFavourite ? Color(0xFF2DDA93) : Color.fromRGBO(38, 38, 38, 0.4),
                       ),
                       Text(
-                        'Yêu thích',
+                        'Bộ sưu tập',
                         style: TextStyle(
                           fontWeight: FontWeight.w400,
                           color: pressFavourite ? Color(0xFF2DDA93) : Color.fromRGBO(38, 38, 38, 0.4),

@@ -26,6 +26,17 @@ class _HomeState extends State<Home> {
         ];
       }
       return Scaffold(
+        appBar: AppBar(
+          //linear color gradient
+          backgroundColor: const Color(0xFF29D890),
+          title: const Text(
+            'Nhận diện cây thuốc nam',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 20,
+              letterSpacing: 0.8),
+          ),
+        ),
       body: Center(
         child: Padding(
             padding: EdgeInsets.only(top: 50, right: 20, left: 20, bottom: 80),

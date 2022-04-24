@@ -55,27 +55,60 @@ class _UploadState extends State<Upload> {
              alignment: Alignment.center,
              padding: EdgeInsets.all(20),
              child: Column(
+               mainAxisAlignment: MainAxisAlignment.center,
                children: [
-
-                  imagepath != ""?Image.file(File(imagepath)):Image.asset('assets/images/altimage.png'),
+                  Container(
+                    width: 300,
+                    height: 450,
+                    child: imagepath != ""?Image.file(File(imagepath)):Image.asset('assets/images/altimage.png')),
 
                     //open button ----------------
+                    Container(
+                      margin: EdgeInsets.fromLTRB(0, 0, 0, 20),
+                      child: ElevatedButton(
+                        onPressed: (){
+                            openImage();
+                        }, 
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 15, horizontal: 0),
+                          child: Text("Chọn ảnh",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold
+                            )
+                          ),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30)
+                          )
+                        ),
+                      ),
+                    ),
                     ElevatedButton(
-                      onPressed: (){
-                          openImage();
-                      }, 
-                      child: Text("Chọn ảnh")
-                    ),  
-                    ElevatedButton(
-                      onPressed: (){
+                      onPressed: imagepath == "" ? null : () {
                         MongoDatabase.insert(widget.name, base64string);
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Đã đóng góp thành công")));
                         setState(() {
                           imagepath = "";
                           base64string = "";
                         });
-                      }, 
-                      child: Text("Đóng góp")
+                      },
+                      style: ElevatedButton.styleFrom(
+                        primary: imagepath == "" ? Colors.grey : Color(0xFF29D890),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30)
+                        )
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(vertical: 15, horizontal: 0),
+                        child: Text("Đóng góp",
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold
+                          )
+                        ),
+                      )
                     ),
                ]
              ),
