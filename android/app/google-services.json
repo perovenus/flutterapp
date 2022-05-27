@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "916031725861",
+    "project_id": "medicinalplantsidentifier",
+    "storage_bucket": "medicinalplantsidentifier.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:916031725861:android:aa786c36b854afc7703acc",
+        "android_client_info": {
+          "package_name": "com.example.demo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "916031725861-6gi9n9k6bafjrpj64e6g3st4r69gvsck.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSMTzJqJ_75iWfp52F7SswdwdV29TfDjI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "916031725861-6gi9n9k6bafjrpj64e6g3st4r69gvsck.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

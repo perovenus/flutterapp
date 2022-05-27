@@ -45,6 +45,9 @@ dependencies:
   tiengviet: ^0.5.0
   flutter_image_compress: ^1.1.0
   objectid: ^2.1.0
+  firebase_core: ^1.17.1
+  cloud_firestore: ^3.1.17
+  provider: ^6.0.3
 
 dev_dependencies:
   flutter_test:
