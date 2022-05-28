@@ -5,9 +5,14 @@ import 'dart:convert';
 import 'dart:typed_data';
 import 'dart:io';
 import 'searchbar.dart';
-void main() {
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  MongoDatabase.connect();
+  // MongoDatabase.connect();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(MyApp());
 }
 class MyApp extends StatelessWidget {

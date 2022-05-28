@@ -2,16 +2,17 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:tflite/tflite.dart';
 import 'package:image_picker/image_picker.dart';
-import 'listitem.dart';
+// import 'listitem.dart';
 import 'favorite.dart';
 import 'home.dart';
+import 'category.dart';
 class Navbar extends StatefulWidget {
   @override
   _NavbarState createState() => _NavbarState();
 }
 class _NavbarState extends State<Navbar> {
     final List<Widget> _children = [
-      ListItem(),
+      Category(),
       Home(name:-1, percent: 0.00),
       Favorite(),
     ];

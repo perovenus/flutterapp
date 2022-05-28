@@ -1,27 +1,28 @@
+import 'dart:ffi';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'dbhandle/mongo.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'details.dart';
 class ListItem extends StatefulWidget {
   @override
   _ListItem createState() => _ListItem();
 }
 
-
-
 class _ListItem extends State<ListItem> {
-
-    @override
-    Widget build(BuildContext context) {
-
-        return FutureBuilder(
-        future: MongoDatabase.getAllData(),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          List DATA = snapshot.data ?? [];
-          return Category(data: DATA, initdata: DATA);
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: MongoDatabase.getAllData(),
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        List DATA = snapshot.data ?? [];
+        return Category(data: DATA, initdata: DATA);
       }
     ); //end builder
+
+    
   }
 }
 
