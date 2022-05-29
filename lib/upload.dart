@@ -4,7 +4,7 @@ import 'dart:typed_data';
 import 'dbhandle/mongo.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
+import 'package:tflite/tflite.dart';
 class Upload extends  StatefulWidget {
     final name ;
     Upload({this.name =""});
@@ -13,10 +13,42 @@ class Upload extends  StatefulWidget {
 }
 
 class _UploadState extends State<Upload> {
-
-  final ImagePicker imgpicker = ImagePicker();
   String imagepath = "";
   String base64string = "";
+  bool _loading = true;
+  File _image = new File('');
+  List _output = [];
+  int name = -1;
+  final ImagePicker imgpicker = ImagePicker();
+  @override
+  void initState() {
+    //initS is the first function that is executed by default when this class is called
+    super.initState();
+    loadModel().then((value) {
+      setState(() {});
+    });
+  }
+  classifyImage(File image) async {
+      //this function runs the model on the image
+      var output = await Tflite.runModelOnImage(
+        path: image.path,
+        numResults: 10, //the amout of categories our neural network can predict
+        threshold: 0.5,
+        imageMean: 127.5,
+        imageStd: 127.5,
+      );
+      setState(() {
+        _loading = false;
+        _output = [output];
+        name = _output[0][0]['index'];
+      });
+    }
+
+    loadModel() async {
+      //this function loads our model
+      await Tflite.loadModel(
+          model: 'assets/model_unquant.tflite', labels: 'assets/uploadlabels.txt');
+    }
   openImage() async {
     try {
         var pickedFile = await imgpicker.pickImage(source: ImageSource.gallery);
@@ -29,6 +61,10 @@ class _UploadState extends State<Upload> {
               setState(() {
                 base64string = _base64string;
               });
+              classifyImage(imagefile);
+              if(name != 0){
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar( content: Text("Không tìm thấy thực vật trong ảnh"),backgroundColor: Colors.deepOrange,));
+        }
         }else{
            print("No image is selected.");
         }
@@ -86,7 +122,7 @@ class _UploadState extends State<Upload> {
                       ),
                     ),
                     ElevatedButton(
-                      onPressed: imagepath == "" ? null : () {
+                      onPressed: name != 0 ? (){ScaffoldMessenger.of(context).showSnackBar(SnackBar( content: Text("Không tìm thấy thực vật trong ảnh"),backgroundColor: Colors.deepOrange,));} : () {
                         MongoDatabase.insert(widget.name, base64string);
                         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Đã đóng góp thành công")));
                         setState(() {
@@ -95,7 +131,7 @@ class _UploadState extends State<Upload> {
                         });
                       },
                       style: ElevatedButton.styleFrom(
-                        primary: imagepath == "" ? Colors.grey : Color(0xFF29D890),
+                        primary: name != 0 ? Colors.grey : Color(0xFF29D890),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30)
                         )

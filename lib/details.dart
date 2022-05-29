@@ -156,7 +156,7 @@ class _DetailsState extends State<Details> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Stack(
-                overflow: Overflow.visible,
+               clipBehavior: Clip.none,
                 children: [
                   Image.network(widget.item[0]['image_src']),
                   Positioned(
