@@ -21,7 +21,7 @@ class _HomeState extends State<Home> {
         DATA = [
           {
             "name": "Hãy chọn 1 ảnh",
-            "image_src": "https://docs.google.com/uc?export=download&id=1JZwV3VUB3E_6mF40cT1QsqjTYJSG823C"
+            "image_src": "https://www.chanchao.com.tw/VTG/images/default.jpg"
           }
         ];
       }

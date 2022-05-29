@@ -24,11 +24,11 @@ class _UploadState extends State<Upload> {
   void initState() {
     //initS is the first function that is executed by default when this class is called
     super.initState();
-    loadModel().then((value) {
+    loadModel1().then((value) {
       setState(() {});
     });
   }
-  classifyImage(File image) async {
+  classifyImage1(File image) async {
       //this function runs the model on the image
       var output = await Tflite.runModelOnImage(
         path: image.path,
@@ -44,7 +44,7 @@ class _UploadState extends State<Upload> {
       });
     }
 
-    loadModel() async {
+    loadModel1() async {
       //this function loads our model
       await Tflite.loadModel(
           model: 'assets/model_unquant.tflite', labels: 'assets/uploadlabels.txt');
@@ -61,10 +61,7 @@ class _UploadState extends State<Upload> {
               setState(() {
                 base64string = _base64string;
               });
-              classifyImage(imagefile);
-              if(name != 0){
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar( content: Text("Không tìm thấy thực vật trong ảnh"),backgroundColor: Colors.deepOrange,));
-        }
+              classifyImage1(imagefile);
         }else{
            print("No image is selected.");
         }
@@ -128,6 +125,7 @@ class _UploadState extends State<Upload> {
                         setState(() {
                           imagepath = "";
                           base64string = "";
+                          name = -1;
                         });
                       },
                       style: ElevatedButton.styleFrom(

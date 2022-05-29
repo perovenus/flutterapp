@@ -60,6 +60,7 @@ class _NavbarState extends State<Navbar> {
         _output = [output];
         name = _output[0][0]['index'];
         percent = _output[0][0]['confidence'];
+        print(_output);
         _children[1] = Home(name: name, percent: percent);
       });
     }

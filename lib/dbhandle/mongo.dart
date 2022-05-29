@@ -19,7 +19,7 @@ class MongoDatabase{
 
     static  Future<List<dynamic>> getDataByName(int x) async {
         List arrData = await detailCollection.find({"index": x}).toList();
-        print('result: $arrData');
+        print('arrData: $arrData');
         return arrData;
     }
     static Future<void> insert(String _name, String _image_base64 ) async {
