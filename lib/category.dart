@@ -139,7 +139,7 @@ class _CategoryState extends State<Category> {
                                           data['name'],
                                           maxLines: 1,
                                           style: TextStyle(
-                                            fontSize: 18,
+                                            fontSize: 16,
                                             fontWeight: FontWeight.bold,
                                           )
                                         ),
@@ -151,7 +151,7 @@ class _CategoryState extends State<Category> {
                                           'Thiếu dữ liệu',
                                           style: TextStyle(
                                             color: Color(0xFFFF6262),
-                                            fontSize: 15,
+                                            fontSize: 14,
                                             fontWeight: FontWeight.w400,
                                           )
                                         ),
