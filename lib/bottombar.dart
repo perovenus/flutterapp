@@ -5,14 +5,14 @@ import 'package:image_picker/image_picker.dart';
 // import 'listitem.dart';
 import 'favorite.dart';
 import 'home.dart';
-import 'category.dart';
+import 'listitem.dart';
 class Navbar extends StatefulWidget {
   @override
   _NavbarState createState() => _NavbarState();
 }
 class _NavbarState extends State<Navbar> {
     final List<Widget> _children = [
-      Category(),
+      ListItem(),
       Home(name:-1, percent: 0.00),
       Favorite(),
     ];
@@ -203,6 +203,7 @@ class _NavbarState extends State<Navbar> {
               });
               OpenPage(1);
             }else{
+            //reset all image
             showModalBottomSheet<void>(
               context: context,
               shape: const RoundedRectangleBorder(

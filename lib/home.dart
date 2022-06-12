@@ -73,7 +73,7 @@ class _HomeState extends State<Home> {
                       RaisedButton(
                         color: Color(0xFF29D890),
                         child: Text('Xem chi tiết', style: TextStyle(fontSize: 20, color:Colors.white),),
-                        onPressed: (){
+                        onPressed: DATA[0]['name'] == "Hãy chọn 1 ảnh" ?(){}:(){
                           Navigator.push(context, MaterialPageRoute(builder: (context) => Details(item :DATA)));
                         },
                       ),

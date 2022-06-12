@@ -13,12 +13,13 @@ class MongoDatabase{
     }
 //Get all data from collection
     static Future<List<dynamic>>  getAllData() async {
+        print("Get all data");
         List result = await detailCollection.find().toList();
         return result;
     }
 
     static  Future<List<dynamic>> getDataByName(int x) async {
-        List arrData = await detailCollection.find({"index": x}).toList();
+        List arrData = await detailCollection.find({"name": x}).toList();
         print('arrData: $arrData');
         return arrData;
     }
